@@ -1,0 +1,129 @@
+--Sesión 2: estructuras de control y bucles
+
+--IF
+DECLARE
+    edad NUMBER := 25;
+BEGIN
+    IF edad >= 18 THEN
+        DBMS_OUTPUT.PUT_LINE('La persona es mayor de edad.');
+    END IF;
+END;
+/
+
+--IF/ELSE
+DECLARE
+    edad NUMBER := 17;
+BEGIN
+    IF edad >= 18 THEN
+        DBMS_OUTPUT.PUT_LINE('La persona es mayor de edad.');
+    ELSE --IF edad < 18 THEN
+        DBMS_OUTPUT.PUT_LINE('La persona NO es mayor de edad.');
+    END IF;
+END;
+/
+
+--IFs anidados
+DECLARE
+    nombre varchar2(20):='Luis';
+    profesion varchar2(20);
+BEGIN
+    IF nombre = 'Luis' THEN
+        profesion := 'Fontanero';
+    ELSIF nombre = 'Pepe' THEN
+        profesion := 'Electricista';
+    ELSE
+        profesion := 'Desconocida';
+    END IF;
+    dbms_output.put_line('La profesión de ' || nombre || ' es ' || profesion);
+END;
+/
+
+
+DECLARE
+    nota NUMBER := 60;
+BEGIN
+    IF nota >= 90 THEN
+        DBMS_OUTPUT.PUT_LINE('Excelente!');
+    ELSIF nota >= 60 THEN
+        DBMS_OUTPUT.PUT_LINE('Aprobado.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Suspenso.');
+    END IF;
+END;
+/
+
+-- CASE o SWITCH
+DECLARE
+    dia_semana VARCHAR2(10) := 'Lunes';
+BEGIN
+    CASE dia_semana
+        WHEN 'Lunes' THEN
+            DBMS_OUTPUT.PUT_LINE('Es el primer día de la semana. NI TAN MAL');
+        WHEN 'Viernes' THEN
+            DBMS_OUTPUT.PUT_LINE('¡Es viernes, por fin!. ¿Dormir?');
+        ELSE -- por defecto
+            DBMS_OUTPUT.PUT_LINE('Es un día de la semana. Otro más. Otro menos.');
+    END CASE;
+END;
+/
+
+-- CASE con variable en rango de valores
+DECLARE
+    nota number(3,1):=6.8;
+BEGIN
+    CASE
+        WHEN nota >= 0 AND nota < 5 THEN
+            dbms_output.put_line ('INSUFICIENTE');
+        WHEN nota >= 5 AND nota < 6 THEN
+            dbms_output.put_line('SUFICIENTE');
+        WHEN nota >= 6 AND nota < 7 THEN
+            dbms_output.put_line ('BIEN');
+        WHEN nota >= 7 AND nota < 9 THEN
+            dbms_output.put_line ('NOTABLE');
+        WHEN nota >= 9 AND nota <=10 THEN
+            dbms_output.put_line ('SOBRESALIENTE');
+        ELSE
+            dbms_output.put_line ('NOTA NO VÁLIDA');
+    END CASE;
+END;
+/
+
+-- Bucles: LOOP genérico, con condición de salida 
+DECLARE
+    N INT:=0;
+BEGIN
+    LOOP
+        N:=N+1;
+        dbms_output.put_line (N);
+        EXIT WHEN N>=10;
+    END LOOP;
+END;
+/
+
+-- Bucles: WHILE
+DECLARE
+    Contador INT := 0;
+BEGIN
+    WHILE Contador <= 10 LOOP
+        dbms_output.put_line (Contador);
+        Contador := Contador + 1;
+    END LOOP;
+END;
+/
+
+-- Bucles: FOR
+BEGIN
+    FOR i IN 0 .. 10 LOOP
+        dbms_output.put_line (i);
+    END LOOP;
+END;
+/
+
+--Bucles: FOR inverso o decreciente
+BEGIN
+    FOR i IN REVERSE 0 .. 10 LOOP
+        dbms_output.put_line (i);
+    END LOOP;
+END;
+/
+
